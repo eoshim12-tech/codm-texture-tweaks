@@ -50,7 +50,7 @@
 
 /* One place for the version. Keep in sync with module.prop (bump +1 every update). */
 #define VERSION "v0.70.1"
-#define PKG "com.garena.game.codm"
+#define PKG "com.activision.callofduty.shooter"
 /* v0.40: the settings folder is chosen at run time. A clone (Dual Apps, work profile, user 999) keeps its data
    under /data/user/<id>/<pkg>, which the old hard-coded /data/data/<pkg> path does not reach. */
 #define DEFAULT_DIR "/data/data/" PKG "/files/"
