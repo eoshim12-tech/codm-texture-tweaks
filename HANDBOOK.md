@@ -1,6 +1,6 @@
 # CODM Blocky Textures: project handbook
 
-Zygisk module for Call of Duty: Mobile (`com.garena.game.codm`) with a WebUI. Module id `codm_tex_logger`.
+Zygisk module for Call of Duty: Mobile (`com.activision.callofduty.shooter`) with a WebUI. Module id `codm_tex_logger`.
 Source layout: `main.cpp` (native module), `webroot/index.html` (WebUI), `module.prop`, `customize.sh`, `tests/`, `.github/workflows/build.yml`.
 
 ## Version policy (from v0.57)
