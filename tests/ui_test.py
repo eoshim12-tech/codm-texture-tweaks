@@ -189,7 +189,7 @@ with sync_playwright() as p:
       window.ksu = { exec: function (cmd, opts, cb) {
         var out = "", err = 0, m;
         window.__cmds.push(cmd.length);
-        if (cmd.indexOf("for d in /data/data/$P/files") >= 0) out = "C|/data/data/com.garena.game.codm/files|100|100\\n";
+        if (cmd.indexOf("for d in /data/data/$P/files") >= 0) out = "C|/data/data/com.activision.callofduty.shooter/files|100|100\\n";
         else if (cmd.indexOf("sort -u > $T") >= 0) out = uniq.length + "\\n";
         else if ((m = /sed -n '(\\d+),(\\d+)p' [$]T/.exec(cmd)) && cmd.indexOf("ct_cand") >= 0) {
           var a = +m[1], b = +m[2]; window.__chunks.push(b - a + 1);
@@ -432,8 +432,8 @@ with sync_playwright() as p:
       } };
     })();
     """
-    A = "C|/data/data/com.garena.game.codm/files|100|100|8|1\\n"
-    M = "C|/data_mirror/data_ce/null/0/com.garena.game.codm/files|900|900|8|1\\n"
+    A = "C|/data/data/com.activision.callofduty.shooter/files|100|100|8|1\\n"
+    M = "C|/data_mirror/data_ce/null/0/com.activision.callofduty.shooter/files|900|900|8|1\\n"
     def fold(cands, heal="HEALED\\n"):
         q = new(); q.add_init_script(FOLD % {"cands": json.dumps(cands.replace("\\n", "\n")), "heal": json.dumps(heal.replace("\\n", "\n"))})
         q.goto(PAGE); q.wait_for_timeout(2300); return q
@@ -441,10 +441,10 @@ with sync_playwright() as p:
     check("17a same folder on two paths, the mirror has the newer log: the usual /data/data path stays", q.inner_text("#aDir").startswith("/data/data/"), q.inner_text("#aDir"))
     check("17b the choice is written to a pin file outside the game folder", q.evaluate("window.__sent.some(c => c.indexOf('codm_tex_cfg/pin_u0') >= 0 && c.indexOf('/data/data/') >= 0)"))
     q.close()
-    q = fold(A + M + "K|pin_u0|/data_mirror/data_ce/null/0/com.garena.game.codm/files\\n")
+    q = fold(A + M + "K|pin_u0|/data_mirror/data_ce/null/0/com.activision.callofduty.shooter/files\\n")
     check("17c a pinned folder stays in use even if another path would sort first", q.inner_text("#aDir").startswith("/data_mirror/"), q.inner_text("#aDir"))
     q.close()
-    q = fold("C|/data/data/com.garena.game.codm/files|0|0|0|0\\n" + M + "K|pin_u0|/data/data/com.garena.game.codm/files\\n")
+    q = fold("C|/data/data/com.activision.callofduty.shooter/files|0|0|0|0\\n" + M + "K|pin_u0|/data/data/com.garena.game.codm/files\\n")
     check("17d the pinned folder is left only when it is empty and another path holds the settings", q.inner_text("#aDir").startswith("/data_mirror/"), q.inner_text("#aDir"))
     q.close()
     q = fold(A, heal="RESTORED=7\\nHEALED\\n")
@@ -464,7 +464,7 @@ with sync_playwright() as p:
       var uidata = %(uidata)s;
       window.ksu = { exec: function(cmd, opts, cb){
         var out = ""; window.__sent.push(cmd);
-        if (cmd.indexOf("for d in /data/data/$P/files") >= 0) out = "C|/data/data/com.garena.game.codm/files|100|100|8|1\\n";
+        if (cmd.indexOf("for d in /data/data/$P/files") >= 0) out = "C|/data/data/com.activision.callofduty.shooter/files|100|100|8|1\\n";
         else if (cmd.indexOf("RESTORED=") >= 0) out = "HEALED\\n";
         else if (cmd.indexOf("cat ") === 0 && cmd.indexOf("ui.b64") >= 0) out = uidata;
         else if (cmd.indexOf("UIWRITEOK") >= 0) out = "UIWRITEOK\\n";
